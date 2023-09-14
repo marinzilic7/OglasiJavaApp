@@ -5,6 +5,7 @@ import course.shop.repositories.OglasiRepository;
 import course.shop.repositories.RecenzijeRepository;
 import course.shop.repositories.UserRepository;
 import jakarta.validation.Valid;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -38,7 +39,7 @@ public class OglasController {
 
 
     @GetMapping("/oglasi")
-    public String showCourses (Model model,@AuthenticationPrincipal UserDetails userDetails) {
+    public String showOglas (Model model,@AuthenticationPrincipal UserDetails userDetails) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDetails user = (UserDetails) auth.getPrincipal();
         Long userId = userDetails.getUserId(); // ili koristite metodu kojom dobavljate ID korisnika
@@ -61,7 +62,7 @@ public class OglasController {
     }
 
     @PostMapping("/oglasi/add")
-    public String addCourse (@Valid Oglasi oglasi, BindingResult result, Model model, RedirectAttributes redirectAttributes, UserDetails userDetails) {
+    public String addOglas (@Valid Oglasi oglasi, BindingResult result, Model model, RedirectAttributes redirectAttributes, UserDetails userDetails) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDetails user = (UserDetails) auth.getPrincipal();
         if (result.hasErrors()) {
@@ -81,7 +82,7 @@ public class OglasController {
         oglasi.setCategory(selectedCategory);
 
         oglasiRepository.save(oglasi);
-        redirectAttributes.addFlashAttribute("successCourse", "Oglas je uspješno dodan!");
+        redirectAttributes.addFlashAttribute("successOglas", "Oglas je uspješno dodan!");
         return "redirect:/oglasi";
     }
 
@@ -119,7 +120,7 @@ public class OglasController {
     }
 
     @PostMapping("oglasi/edit/{id}")
-    public String editCoruse (@PathVariable("id") Long id, @Valid Oglasi oglasi, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
+    public String editOglas (@PathVariable("id") Long id, @Valid Oglasi oglasi, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDetails user = (UserDetails) auth.getPrincipal();
         if (result.hasErrors()) {
@@ -131,18 +132,20 @@ public class OglasController {
         User selectedUser = userRepository.findById(userIdd).orElse(null);
         oglasi.setUser(selectedUser);
         oglasiRepository.save(oglasi);
-        redirectAttributes.addFlashAttribute("successCourse", "Oglas je uspješno uredjen!");
+        redirectAttributes.addFlashAttribute("successOglas", "Oglas je uspješno uredjen!");
         return "redirect:/oglasi";
     }
 
 
     @GetMapping("/oglasi/delete/{id}")
-    public String deleteGame(@PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes) {
+    public String deleteOglas(@PathVariable("id") Long id, Model model, RedirectAttributes redirectAttributes) {
 
-            Oglasi oglasi = oglasiRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Pogrešan ID"));
-            oglasiRepository.delete(oglasi);
-        redirectAttributes.addFlashAttribute("successCourse", "Oglas je uspješno izbrisan!");
-
+        try {
+            oglasiRepository.deleteById(id);
+            redirectAttributes.addFlashAttribute("successOglas", "Oglas je uspješno izbrisan.");
+        } catch (DataIntegrityViolationException e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Prvo izbrisite sve recenzije koje su vezane za ovaj oglas.");
+        }
 
         return "redirect:/oglasi";
     }

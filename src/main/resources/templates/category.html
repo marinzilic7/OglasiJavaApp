@@ -23,18 +23,18 @@
             <form class="p-5 col-xl-6 col-sm-10 col-md-10 col-lg-8 " th:object="${category}" th:action="@{/category/add}" method="POST">
                 <div class="mb-3">
                     <label  class="form-label">Unesi naziv kategorije</label>
-                    <input class="form-control " style="border:none; border-bottom:1px solid grey; background-color:#f9f9f9" th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}" type="text" th:field="*{name}">
+                    <input class="form-control "  th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}" type="text" th:field="*{name}">
 
                 </div>
 
-                <button type="submit" class="btn btn-primary w-100">Submit</button>
+                <button type="submit" class="btn w-100 text-light" style="background-color:#EB6864;">Submit</button>
             </form>
         </div>
     </div>
 
     <div class="row mt-5">
         <h3>Sve kategorije</h3>
-        <table class="table mt-3 border shadow-lg col-12 ">
+        <table class="table  table-bordered  mt-3 border shadow-lg col-12 ">
             <thead>
             <tr>
                 <th scope="col">ID</th>

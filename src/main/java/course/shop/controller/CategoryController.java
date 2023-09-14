@@ -75,7 +75,7 @@ public class CategoryController {
             categoryRepository.deleteById(id);
             redirectAttributes.addFlashAttribute("successMessage", "Kategorija je uspješno izbrisana.");
         } catch (DataIntegrityViolationException e) {
-            redirectAttributes.addFlashAttribute("errorMessage", "Kategorija se ne može izbrisati jer je referencirana u tečajevima.");
+            redirectAttributes.addFlashAttribute("errorMessage", "Prvo izbrisite sve oglase koji su vezani za ovu kategoriju.");
         }
         return "redirect:/category";
     }
