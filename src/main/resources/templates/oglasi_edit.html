@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}" lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <title>Uređivanje kategorije</title>
+</head>
+<body layout:fragment="content">
+<div class="container mt-5 col-lg-6 col-xl-4 col-sm-7 shadow-lg p-5">
+  <div class="row">
+    <div class="col">
+      <h4>Uredi tečaj</h4>
+      <form th:object="${oglasi}" th:action="@{/oglasi/edit/{id}(id=${oglasi.getId()})}" method="POST">
+
+        <label class="col-form-label">Unesite naziv tečaja:</label>
+        <input class="form-control" th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}" type="text" th:field="*{name}">
+        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback"></div>
+        <label class="col-form-label">Unesite opis tečaja:</label>
+        <input class="form-control" th:classappend="${#fields.hasErrors('opis') ? 'is-invalid' : ''}" type="text" th:field="*{opis}">
+        <div th:if="${#fields.hasErrors('opis')}" th:errors="*{opis}" class="invalid-feedback"></div>
+        <label class="col-form-label">Odaberite kategoriju:</label>
+
+        <select class="form-select" aria-label="Category"  th:field="*{category}">
+          <option th:each="cat : ${categories}" th:value="${cat.getId()}" th:text="${cat.getName()}"></option>
+        </select>
+
+        <label class="col-form-label">Unesite cijenu tečaja:</label>
+        <input class="form-control" th:classappend="${#fields.hasErrors('cijena') ? 'is-invalid' : ''}" type="text" th:field="*{cijena}">
+        <div th:if="${#fields.hasErrors('cijena')}" th:errors="*{cijena}" class="invalid-feedback"></div>
+
+
+
+        <button type="submit" class="btn btn-primary mt-5 w-100">Uredi</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

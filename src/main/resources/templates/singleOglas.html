@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}" lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prikaz svih kategorija</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body layout:fragment="content">
+
+<div class="container">
+
+  <div class="d-flex flex-column align-items-center mt-3">
+    <h1 class="mt-3">Oglas</h1>
+    <div class="card mt-5" style="width: 25rem;" th:object="${oglasi}">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <p class="card-title">
+            <span class="fw-bold">Ime:</span>
+            <span th:text="${oglasi.getName()}">aaaaaaaaaa</span>
+          </p>
+          <p class="card-title">
+            <span class="fw-bold">Kategorija:</span>
+            <span th:text="${oglasi.getCategory().getName()}">aaaaaaaaaa</span>
+          </p>
+        </div>
+        <hr>
+        <p>
+          <span class="fw-bold">Opis:</span>
+          <span class="card-text" th:text="${oglasi.getOpis()}">aaaaaaaaaa</span>
+        </p>
+        <hr>
+        <div class="d-flex justify-content-between align-items-center">
+          <p>
+            <span class="fw-bold">Korisnik:</span>
+            <span class="card-text" th:text="${oglasi.getUser().getFirstname()}">aaaaaaaaaa</span>
+          </p>
+          <p>
+            <span class="fw-bold">Cijena:</span>
+            <span class="card-text" th:text="${oglasi.getCijena()} + ' €'">aaaaaaaaaa</span>
+          </p>
+        </div>
+        <hr>
+        <div class="d-flex  justify-content-between">
+          <a data-toggle="tooltip" data-placement="top" title="Napisi recenziju" class="btn btn-sm text-light btn-primary " th:href="@{/recenzija/{id}(id=${oglasi.getId()})}">Napisi recenziju</a>
+          <div>
+            <a data-toggle="tooltip" data-placement="top" title="Briši oglas" class="btn btn-sm text-light btn-danger " th:href="@{/oglasi/delete/{id}(id=${oglasi.getId()})}">Izbrisi</a>
+            <a data-toggle="tooltip" data-placement="top" title="Uredi oglas" class="btn btn-sm text-light btn-secondary " th:href="@{/oglasi/edit/{id}(id=${oglasi.getId()})}">Uredi</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+<div class="container mt-5">
+  <h1 class="text-center">Recenzije</h1>
+  <div th:each="recenzija : ${recenzije}" class="shadow-lg p-4 mt-4">
+
+    <p class="fw-bold">Objavio/la</p>
+    <p th:text="${recenzija.getUser().getFirstname()} + ' ' + ${recenzija.getUser().getLastname()}"></p>
+    <hr>
+    <p th:text="${recenzija.getOpis()}"></p>
+    <div class="d-flex justify-content-end ">
+      <a data-toggle="tooltip" data-placement="top" title="Briši" class="btn btn-sm text-light btn-danger " th:href="@{/recenzije/delete/{id}(id=${recenzija.getId()})}">Izbrisi</a>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+</div>
+
+</body>
+</html>
