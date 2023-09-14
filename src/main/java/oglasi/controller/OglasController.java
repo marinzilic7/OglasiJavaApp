@@ -1,10 +1,11 @@
-package course.shop.controller;
-import course.shop.model.*;
-import course.shop.repositories.CategoryRepository;
-import course.shop.repositories.OglasiRepository;
-import course.shop.repositories.RecenzijeRepository;
-import course.shop.repositories.UserRepository;
+package oglasi.controller;
+import oglasi.model.*;
+import oglasi.repositories.CategoryRepository;
+import oglasi.repositories.OglasiRepository;
+import oglasi.repositories.RecenzijeRepository;
+import oglasi.repositories.UserRepository;
 import jakarta.validation.Valid;
+import oglasi.model.*;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
-import course.shop.model.Recenzije;
+import oglasi.model.Recenzije;
 
 
 @Controller

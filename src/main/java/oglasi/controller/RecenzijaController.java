@@ -1,12 +1,15 @@
-package course.shop.controller;
+package oglasi.controller;
 
 
-import course.shop.model.*;
-import course.shop.repositories.CategoryRepository;
-import course.shop.repositories.OglasiRepository;
-import course.shop.repositories.RecenzijeRepository;
-import course.shop.repositories.UserRepository;
+import oglasi.model.*;
+import oglasi.model.Oglasi;
+import oglasi.model.User;
+import oglasi.repositories.OglasiRepository;
+import oglasi.repositories.RecenzijeRepository;
+import oglasi.repositories.UserRepository;
 import jakarta.validation.Valid;
+import oglasi.model.Recenzije;
+import oglasi.model.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

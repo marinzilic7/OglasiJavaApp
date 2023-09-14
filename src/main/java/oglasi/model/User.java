@@ -1,4 +1,4 @@
-package course.shop.model;
+package oglasi.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;

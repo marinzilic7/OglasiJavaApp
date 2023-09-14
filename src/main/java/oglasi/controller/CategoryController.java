@@ -1,8 +1,8 @@
-package course.shop.controller;
+package oglasi.controller;
 
-import course.shop.model.Category;
-import course.shop.model.UserDetails;
-import course.shop.repositories.CategoryRepository;
+import oglasi.model.Category;
+import oglasi.model.UserDetails;
+import oglasi.repositories.CategoryRepository;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

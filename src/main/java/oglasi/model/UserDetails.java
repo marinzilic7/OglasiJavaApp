@@ -1,4 +1,4 @@
-package course.shop.model;
+package oglasi.model;
 
 import org.springframework.security.core.GrantedAuthority;
 

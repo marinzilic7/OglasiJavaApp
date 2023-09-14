@@ -1,8 +1,8 @@
-package course.shop.services;
+package oglasi.services;
 
-import course.shop.model.User;
-import course.shop.model.UserDetails;
-import course.shop.repositories.UserRepository;
+import oglasi.model.User;
+import oglasi.model.UserDetails;
+import oglasi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 

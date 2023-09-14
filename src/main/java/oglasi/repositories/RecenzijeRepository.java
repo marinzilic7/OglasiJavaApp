@@ -1,6 +1,6 @@
-package course.shop.repositories;
-import course.shop.model.Oglasi;
-import course.shop.model.Recenzije;
+package oglasi.repositories;
+import oglasi.model.Oglasi;
+import oglasi.model.Recenzije;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

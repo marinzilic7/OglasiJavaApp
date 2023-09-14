@@ -1,4 +1,4 @@
-package course.shop;
+package oglasi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

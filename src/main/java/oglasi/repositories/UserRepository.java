@@ -1,6 +1,6 @@
-package course.shop.repositories;
+package oglasi.repositories;
 
-import course.shop.model.User;
+import oglasi.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
