@@ -55,9 +55,8 @@ public class OglasController {
         model.addAttribute("added", false);
         model.addAttribute("activeLink", "Igre");
         User userr = userDetails.getUser();
-        System.out.println("User je" + userr);
         Long userIdd = user.getUserId();
-        System.out.println("ID korisnika: " + userIdd);
+
 
         return "oglasi";
     }
